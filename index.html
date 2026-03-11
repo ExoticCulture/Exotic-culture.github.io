@@ -1,21 +1,112 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>My Website</title>
+<title>Exotic Culture</title>
+
 <style>
+
 body{
+margin:0;
+font-family:Arial;
 background:black;
 color:white;
 text-align:center;
-font-family:Arial;
 }
+
+header{
+padding:30px;
+font-size:32px;
+letter-spacing:3px;
+}
+
+.hero{
+height:60vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+}
+
+button{
+padding:15px 40px;
+font-size:18px;
+border:none;
+background:white;
+color:black;
+cursor:pointer;
+margin-top:20px;
+}
+
+.section{
+padding:60px 20px;
+}
+
+.products{
+display:flex;
+justify-content:center;
+gap:40px;
+flex-wrap:wrap;
+}
+
+.product{
+background:#111;
+padding:20px;
+width:200px;
+}
+
+footer{
+padding:30px;
+font-size:14px;
+opacity:.6;
+}
+
 </style>
+
 </head>
 
 <body>
 
-<h1>Welcome to My Website</h1>
-<p>This website was built from my phone.</p>
+<header>
+EXOTIC CULTURE
+</header>
+
+<div class="hero">
+<h1>Streetwear For The Bold</h1>
+<p>Welcome to the official Exotic Culture brand</p>
+<button>SHOP NOW</button>
+</div>
+
+<div class="section">
+<h2>Featured Drops</h2>
+
+<div class="products">
+
+<div class="product">
+<h3>Exotic Hoodie</h3>
+<p>$80</p>
+</div>
+
+<div class="product">
+<h3>Culture Tee</h3>
+<p>$40</p>
+</div>
+
+<div class="product">
+<h3>Street Hat</h3>
+<p>$35</p>
+</div>
+
+</div>
+</div>
+
+<div class="section">
+<h2>About The Brand</h2>
+<p>Exotic Culture is more than clothing. It's a movement built from the streets and inspired by individuality.</p>
+</div>
+
+<footer>
+© 2026 Exotic Culture
+</footer>
 
 </body>
 </html>
