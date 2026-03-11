@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 <title>Exotic Culture</title>
 
@@ -7,29 +8,48 @@
 
 body{
 margin:0;
-font-family:Arial;
+font-family:Arial, Helvetica, sans-serif;
 background:black;
 color:white;
-text-align:center;
 }
 
 header{
-padding:30px;
-font-size:32px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px 40px;
+font-size:22px;
 letter-spacing:3px;
+border-bottom:1px solid #222;
+}
+
+nav a{
+color:white;
+margin-left:20px;
+text-decoration:none;
 }
 
 .hero{
-height:60vh;
+height:70vh;
 display:flex;
 flex-direction:column;
 justify-content:center;
 align-items:center;
+text-align:center;
+}
+
+.hero h1{
+font-size:50px;
+margin-bottom:10px;
+}
+
+.hero p{
+opacity:.7;
 }
 
 button{
-padding:15px 40px;
-font-size:18px;
+padding:12px 30px;
+font-size:16px;
 border:none;
 background:white;
 color:black;
@@ -38,70 +58,95 @@ margin-top:20px;
 }
 
 .section{
-padding:60px 20px;
+padding:60px 40px;
+text-align:center;
 }
 
 .products{
 display:flex;
 justify-content:center;
-gap:40px;
 flex-wrap:wrap;
+gap:40px;
+margin-top:40px;
 }
 
 .product{
 background:#111;
 padding:20px;
-width:200px;
+width:220px;
+border-radius:5px;
+}
+
+.product img{
+width:100%;
 }
 
 footer{
-padding:30px;
+text-align:center;
+padding:40px;
 font-size:14px;
 opacity:.6;
+border-top:1px solid #222;
 }
 
 </style>
-
 </head>
 
 <body>
 
 <header>
-EXOTIC CULTURE
+<div>EXOTIC CULTURE</div>
+
+<nav>
+<a href="#">Home</a>
+<a href="#">Shop</a>
+<a href="#">Contact</a>
+</nav>
 </header>
 
 <div class="hero">
+
 <h1>Streetwear For The Bold</h1>
 <p>Welcome to the official Exotic Culture brand</p>
-<button>SHOP NOW</button>
+
+<button>Shop Now</button>
+
 </div>
 
 <div class="section">
+
 <h2>Featured Drops</h2>
 
 <div class="products">
 
 <div class="product">
+<img src="hoodie.jpg">
 <h3>Exotic Hoodie</h3>
 <p>$80</p>
+<button>Buy</button>
 </div>
 
 <div class="product">
+<img src="shirt.jpg">
 <h3>Culture Tee</h3>
 <p>$40</p>
+<button>Buy</button>
 </div>
 
 <div class="product">
+<img src="hat.jpg">
 <h3>Street Hat</h3>
 <p>$35</p>
+<button>Buy</button>
 </div>
 
 </div>
+
 </div>
 
 <div class="section">
-<h2>About The Brand</h2>
-<p>Exotic Culture is more than clothing. It's a movement built from the streets and inspired by individuality.</p>
+<h2>About Exotic Culture</h2>
+<p>Exotic Culture is a streetwear brand built from individuality, creativity, and the culture of the streets.</p>
 </div>
 
 <footer>
@@ -109,4 +154,5 @@ EXOTIC CULTURE
 </footer>
 
 </body>
+
 </html>
