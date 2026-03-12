@@ -2,13 +2,13 @@
 <html>
 
 <head>
-<title>Exotic Culture Gallery</title>
+<title>Exotic Culture Lookbook</title>
 
 <style>
 
 body{
 margin:0;
-font-family:BlowBrush, sans-serif;
+font-family:Helvetica, sans-serif;
 background:black;
 color:white;
 }
@@ -29,6 +29,13 @@ margin-left:20px;
 text-decoration:none;
 }
 
+h1{
+text-align:center;
+margin-top:40px;
+}
+
+/* GALLERY */
+
 .gallery{
 display:grid;
 grid-template-columns:repeat(auto-fit, minmax(250px,1fr));
@@ -41,11 +48,33 @@ width:100%;
 height:300px;
 object-fit:cover;
 border-radius:6px;
+cursor:pointer;
+transition:transform .3s;
 }
 
-h1{
-text-align:center;
-margin-top:40px;
+.gallery img:hover{
+transform:scale(1.05);
+}
+
+/* IMAGE POPUP */
+
+.lightbox{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.9);
+display:none;
+justify-content:center;
+align-items:center;
+z-index:999;
+}
+
+.lightbox img{
+max-width:90%;
+max-height:90%;
+border-radius:8px;
 }
 
 </style>
@@ -64,7 +93,7 @@ margin-top:40px;
 </nav>
 </header>
 
-<h1>Exotic Culture Gallery</h1>
+<h1>Exotic Culture Lookbook</h1>
 
 <div class="gallery">
 
@@ -76,6 +105,29 @@ margin-top:40px;
 <img src="6.jpeg">
 
 </div>
+
+<div class="lightbox" id="lightbox">
+<img id="lightbox-img">
+</div>
+
+<script>
+
+const images = document.querySelectorAll(".gallery img");
+const lightbox = document.getElementById("lightbox");
+const lightboxImg = document.getElementById("lightbox-img");
+
+images.forEach(img => {
+img.addEventListener("click", () => {
+lightbox.style.display = "flex";
+lightboxImg.src = img.src;
+});
+});
+
+lightbox.addEventListener("click", () => {
+lightbox.style.display = "none";
+});
+
+</script>
 
 </body>
 
