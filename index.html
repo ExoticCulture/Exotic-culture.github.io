@@ -89,6 +89,47 @@ opacity:.6;
 border-top:1px solid #222;
 }
 
+/* DROP TIMER */
+
+.timer-section{
+margin-top:30px;
+}
+
+#countdown{
+display:flex;
+gap:20px;
+font-size:28px;
+justify-content:center;
+margin-top:20px;
+}
+
+.timer-box{
+background:#111;
+padding:15px 20px;
+border-radius:5px;
+}
+
+.timer-label{
+font-size:12px;
+opacity:.6;
+}
+
+/* HOODIE PREVIEW */
+
+.preview-images{
+display:flex;
+gap:10px;
+justify-content:center;
+margin-top:20px;
+}
+
+.preview-images img{
+width:80px;
+height:80px;
+object-fit:cover;
+border-radius:4px;
+}
+
 </style>
 </head>
 
@@ -106,35 +147,47 @@ border-top:1px solid #222;
 </header>
 
 <div class="hero">
-<script>
-const dropDate = new Date("May 6, 2026 12:00:00").getTime();
 
-const timer = setInterval(function() {
-
-  const now = new Date().getTime();
-  const distance = dropDate - now;
-
-  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-  const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-  const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-  document.getElementById("days").innerHTML = days;
-  document.getElementById("hours").innerHTML = hours;
-  document.getElementById("minutes").innerHTML = minutes;
-  document.getElementById("seconds").innerHTML = seconds;
-
-  if (distance < 0) {
-    clearInterval(timer);
-    document.getElementById("countdown").innerHTML = "DROP LIVE";
-  }
-
-}, 1000);
-</script>
 <h1>Streetwear For The Bold</h1>
 <p>Welcome To The Official Exotic Culture Website</p>
 
 <button>Shop Now</button>
+
+<div class="timer-section">
+
+<h2>Next Drop In</h2>
+
+<div id="countdown">
+
+<div class="timer-box">
+<div id="days">0</div>
+<div class="timer-label">Days</div>
+</div>
+
+<div class="timer-box">
+<div id="hours">0</div>
+<div class="timer-label">Hours</div>
+</div>
+
+<div class="timer-box">
+<div id="minutes">0</div>
+<div class="timer-label">Minutes</div>
+</div>
+
+<div class="timer-box">
+<div id="seconds">0</div>
+<div class="timer-label">Seconds</div>
+</div>
+
+</div>
+
+<div class="preview-images">
+<img src="hoodie1.jpg">
+<img src="hoodie2.jpg">
+<img src="hoodie3.jpg">
+</div>
+
+</div>
 
 </div>
 
@@ -144,9 +197,9 @@ const timer = setInterval(function() {
 
 <div class="products">
 
-<div class="products">
+<div class="product">
 <img src="3ppl.jpeg">
-<h3>"Don't Run Now Hoodie</h3>
+<h3>Don't Run Now Hoodie</h3>
 <p>Coming Soon!</p>
 <button>Pre-Order</button>
 </div>
@@ -172,16 +225,43 @@ const timer = setInterval(function() {
 <div class="section">
 <h2>About Exotic Culture</h2>
 <p>Born in Chicago in 2023, Exotic Culture is a streetwear brand 
-  built from individuality, creativity, and the culture. 
-  Exotic Culture  is more than clothing — it’s a movement. 
-  Inspired by street culture, ambition, and black empowerment, 
-  our brand is made for those who stand out and create their own path.</p>
+built from individuality, creativity, and the culture. 
+Exotic Culture is more than clothing — it’s a movement. 
+Inspired by street culture, ambition, and empowerment, 
+our brand is made for those who stand out and create their own path.</p>
 </div>
 
 <footer>
 © 2026 Exotic Culture
 </footer>
 
-</body>
+<script>
 
+const dropDate = new Date("May 6, 2026 12:00:00").getTime();
+
+const timer = setInterval(function() {
+
+const now = new Date().getTime();
+const distance = dropDate - now;
+
+const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+document.getElementById("days").innerHTML = days;
+document.getElementById("hours").innerHTML = hours;
+document.getElementById("minutes").innerHTML = minutes;
+document.getElementById("seconds").innerHTML = seconds;
+
+if (distance < 0) {
+clearInterval(timer);
+document.getElementById("countdown").innerHTML = "DROP LIVE";
+}
+
+}, 1000);
+
+</script>
+
+</body>
 </html>
