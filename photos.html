@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>Exotic Culture Gallery</title>
+
+<style>
+
+body{
+margin:0;
+font-family:Helvetica, sans-serif;
+background:black;
+color:white;
+}
+
+header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px 40px;
+font-size:22px;
+letter-spacing:3px;
+border-bottom:1px solid #222;
+}
+
+nav a{
+color:grey;
+margin-left:20px;
+text-decoration:none;
+}
+
+.gallery{
+display:grid;
+grid-template-columns:repeat(auto-fit, minmax(250px,1fr));
+gap:20px;
+padding:50px;
+}
+
+.gallery img{
+width:100%;
+height:300px;
+object-fit:cover;
+border-radius:6px;
+}
+
+h1{
+text-align:center;
+margin-top:40px;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+<div>EXOTIC CULTURE</div>
+
+<nav>
+<a href="index.html">Home</a>
+<a href="#">Shop</a>
+<a href="#">Contact</a>
+<a href="photos.html">Photos</a>
+</nav>
+</header>
+
+<h1>Exotic Culture Gallery</h1>
+
+<div class="gallery">
+
+<img src="3ppl.jpeg">
+<img src="Shawno1.jpeg">
+<img src="chasemore.jpg">
+<img src="hoodie1.jpg">
+<img src="hoodie2.jpg">
+<img src="hoodie3.jpg">
+
+</div>
+
+</body>
+
+</html>
