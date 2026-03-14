@@ -1,255 +1,505 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 <title>Exotic Culture</title>
+
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
 <style>
-/* GENERAL */
+
+/* GENERAL /
+
 body{
-  margin:0;
-  font-family:Vogue, Helvetica, sans-serif;
-  background:black;
-  color:grey;
+margin:0;
+font-family:Helvetica, sans-serif;
+background:black;
+color:white;
+overflow-x:hidden;
 }
 
-/* HEADER WITH CART */
+/ INTRO SCREEN /
+
+#intro{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:black;
+display:flex;
+justify-content:center;
+align-items:center;
+z-index:9999;
+flex-direction:column;
+animation:fadeOut 1s ease 4s forwards;
+}
+
+#intro h1{
+font-size:60px;
+letter-spacing:8px;
+color:white;
+animation:logoPulse 2s infinite;
+}
+
+@keyframes logoPulse{
+0%{transform:scale(1);opacity:.8;}
+50%{transform:scale(1.1);opacity:1;}
+100%{transform:scale(1);opacity:.8;}
+}
+
+@keyframes fadeOut{
+to{opacity:0;visibility:hidden;}
+}
+
+/ NAVBAR /
+
 header{
-  position:relative;
-  width:100%;
-  padding:20px 40px;
-  display:flex;
-  justify-content:flex-end;
-  background:black;
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px 40px;
+border-bottom:1px solid #222;
 }
 
-header a.cart-icon{
-  color:white;
-  text-decoration:none;
-  font-size:24px;
-  position:relative;
+header nav a{
+color:grey;
+margin-left:20px;
+text-decoration:none;
+}
+
+header nav a:hover{
+color:white;
+}
+
+/ CART /
+
+.cart{
+position:fixed;
+top:20px;
+right:20px;
+font-size:28px;
+cursor:pointer;
 }
 
 #cart-count{
-  position:absolute;
-  top:-10px;
-  right:-10px;
-  background:red;
-  color:white;
-  border-radius:50%;
-  padding:2px 6px;
-  font-size:12px;
+background:white;
+color:black;
+border-radius:50%;
+padding:2px 6px;
+font-size:12px;
+margin-left:4px;
 }
 
-/* CONTACT SECTION */
+/ HERO /
+
+.hero{
+text-align:center;
+padding:140px 20px;
+position:relative;
+}
+
+.hero h1{
+font-size:48px;
+margin-bottom:10px;
+}
+
+.hero h2{
+color:grey;
+font-weight:normal;
+}
+
+/ BACKGROUND LOGO /
+
+.hero::before{
+content:'';
+background:url('logo.png') no-repeat center;
+background-size:300px;
+opacity:.05;
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+width:400px;
+height:400px;
+}
+
+/ COUNTDOWN /
+
+#countdown{
+margin-top:40px;
+font-size:30px;
+display:flex;
+justify-content:center;
+gap:20px;
+flex-wrap:wrap;
+}
+
+.time-box{
+background:#111;
+padding:20px;
+border-radius:8px;
+min-width:80px;
+}
+
+/ SHOP /
+
+.shop{
+padding:80px 20px;
+text-align:center;
+}
+
+.products{
+display:flex;
+justify-content:center;
+flex-wrap:wrap;
+gap:30px;
+margin-top:40px;
+}
+
+.product{
+background:#111;
+padding:20px;
+border-radius:8px;
+width:220px;
+transition:.3s;
+}
+
+.product:hover{
+transform:translateY(-10px);
+background:#1a1a1a;
+}
+
+.product img{
+width:100%;
+border-radius:6px;
+}
+
+.product button{
+margin-top:10px;
+padding:10px;
+background:white;
+border:none;
+cursor:pointer;
+font-weight:bold;
+}
+
+/ GALLERY /
+
+.gallery{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:20px;
+padding:80px 20px;
+}
+
+.gallery img{
+width:100%;
+height:300px;
+object-fit:cover;
+cursor:pointer;
+border-radius:6px;
+transition:.3s;
+}
+
+.gallery img:hover{
+transform:scale(1.05);
+}
+
+/ LIGHTBOX /
+
+.lightbox{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,.9);
+display:none;
+justify-content:center;
+align-items:center;
+z-index:999;
+}
+
+.lightbox img{
+max-width:90%;
+max-height:90%;
+}
+
+/ CONTACT /
+
 #contact{
-  padding:80px 20px;
-  text-align:center;
-  background:black;
-  color:white;
-  font-family:Arial, Helvetica, sans-serif;
+padding:80px 20px;
+text-align:center;
 }
 
 .contact-container{
-  display:flex;
-  justify-content:center;
-  gap:50px;
-  flex-wrap:wrap;
-  margin-top:40px;
-}
-
-.contact-info{
-  max-width:300px;
-}
-
-.contact-info a{
-  color:white;
-  text-decoration:none;
-  display:block;
-  margin-bottom:15px;
-  font-weight:bold;
-}
-
-.contact-form{
-  max-width:400px;
-  width:100%;
+display:flex;
+justify-content:center;
+gap:40px;
+flex-wrap:wrap;
+margin-top:30px;
 }
 
 .contact-form input,
 .contact-form textarea{
-  width:100%;
-  padding:12px;
-  margin-bottom:15px;
-  border:none;
-  background:#111;
-  color:white;
+width:100%;
+padding:12px;
+margin-bottom:10px;
+border:none;
+background:#111;
+color:white;
 }
 
 .contact-form button{
-  width:100%;
-  padding:12px;
-  background:white;
-  color:black;
-  border:none;
-  cursor:pointer;
-  font-weight:bold;
+padding:12px;
+width:100%;
+background:white;
+border:none;
+cursor:pointer;
 }
 
-.contact-form button:hover{
-  background:grey;
-}
+/ FOOTER /
 
-/* PRODUCTS */
-.product-section{
-  padding:80px 20px;
-  text-align:center;
-}
-
-.product{
-  display:inline-block;
-  background:#111;
-  padding:20px;
-  margin:10px;
-  border-radius:10px;
-  color:white;
-}
-
-.product button{
-  padding:10px 15px;
-  margin-top:10px;
-  background:white;
-  color:black;
-  border:none;
-  cursor:pointer;
-  font-weight:bold;
-}
-
-.product button:hover{
-  background:grey;
-}
-
-/* FOOTER */
 footer{
-  background:#050505;
-  color:white;
-  text-align:center;
-  padding:40px 20px;
-  margin-top:60px;
-  border-top:1px solid #222;
+text-align:center;
+padding:40px 20px;
+border-top:1px solid #222;
+color:grey;
+margin-top:60px;
 }
 
-.footer-links{
-  margin:15px 0;
-}
-
-.footer-links a{
-  color:grey;
-  text-decoration:none;
-  margin:0 15px;
-  font-size:14px;
-}
-
-.footer-links a:hover{
-  opacity:0.7;
-}
-
-.footer-social{
-  margin-top:10px;
-}
-
-.footer-social a{
-  color:grey;
-  text-decoration:none;
-  margin:0 10px;
-  font-weight:bold;
+footer a{
+color:white;
+text-decoration:none;
+margin:0 10px;
 }
 
 </style>
+
 </head>
+
 <body>
 
-<!-- HEADER WITH CART -->
+<!-- INTRO LOGO -->
+
+<div id="intro">
+<h1>EXOTIC CULTURE</h1>
+</div>
+
+<!-- NAV -->
+
 <header>
-  <a href="cart.html" class="cart-icon">
-    🛒
-    <span id="cart-count">0</span>
-  </a>
+
+<div>EXOTIC CULTURE</div>
+
+<nav>
+<a href="#">Home</a>
+<a href="#shop">Shop</a>
+<a href="#gallery">Gallery</a>
+<a href="#contact">Contact</a>
+</nav>
+
 </header>
 
-<!-- CONTACT SECTION -->
+<!-- CART -->
+
+<div class="cart">🛒 <span id="cart-count">0</span></div>
+
+<!-- HERO -->
+
+<section class="hero">
+
+<h1>Streetwear For The Culture</h1>
+
+<h2>Welcome To The Official Exotic Culture Website</h2>
+
+<div id="countdown">
+
+<div class="time-box"><span id="days">0</span><br>Days</div>
+<div class="time-box"><span id="hours">0</span><br>Hours</div>
+<div class="time-box"><span id="minutes">0</span><br>Minutes</div>
+<div class="time-box"><span id="seconds">0</span><br>Seconds</div>
+
+</div>
+
+</section>
+
+<!-- SHOP -->
+
+<section id="shop" class="shop">
+
+<h2>Shop Exotic Culture</h2>
+
+<div class="products">
+
+<div class="product">
+<img src="hoodie1.jpg">
+<h3>Exotic Hoodie</h3>
+<button onclick="addToCart()">Add To Cart</button>
+</div>
+
+<div class="product">
+<img src="hoodie2.jpg">
+<h3>Street Tee</h3>
+<button onclick="addToCart()">Add To Cart</button>
+</div>
+
+<div class="product">
+<img src="hoodie3.jpg">
+<h3>Snapback</h3>
+<button onclick="addToCart()">Add To Cart</button>
+</div>
+
+</div>
+
+</section>
+
+<!-- GALLERY -->
+
+<section id="gallery">
+
+<h2 style="text-align:center">Lookbook</h2>
+
+<div class="gallery">
+
+<img src="3ppl.jpeg">
+<img src="Shawno1.jpeg">
+<img src="chasemore.jpg">
+<img src="hoodie1.jpg">
+<img src="hoodie2.jpg">
+<img src="hoodie3.jpg">
+
+</div>
+
+</section>
+
+<div class="lightbox" id="lightbox">
+<img id="lightbox-img">
+</div>
+
+<!-- CONTACT -->
+
 <section id="contact">
+
 <h2>Contact Exotic Culture</h2>
-<p>For business inquiries, collaborations, or customer support reach out below.</p>
 
 <div class="contact-container">
 
-<div class="contact-info">
-<h3>Direct Contact</h3>
-<p>Email:</p>
-<a href="mailto:exoticculture@gmail.com">23exoticculture@gmail.com</a>
-<p>Instagram:</p>
-<a href="https://instagram.com/exoticculture" target="_blank">@exotic_culture23</a>
+<div>
+<p>Email</p>
+<a href="mailto:exoticculture@gmail.com">exoticculture@gmail.com</a>
+
+<p>Instagram</p>
+<a href="https://instagram.com/exoticculture">@exoticculture</a>
 </div>
 
 <div class="contact-form">
+
 <form action="https://formspree.io/f/mgebqplr" method="POST">
-  <input type="text" name="name" placeholder="Your Name" required>
-  <input type="email" name="email" placeholder="Your Email" required>
-  <textarea name="message" placeholder="Your Message" rows="5"></textarea>
-  <button type="submit">Send Message</button>
+
+<input type="text" name="name" placeholder="Name" required>
+
+<input type="email" name="email" placeholder="Email" required>
+
+<textarea name="message" placeholder="Message"></textarea>
+
+<button type="submit">Send Message</button>
+
 </form>
+
 </div>
 
 </div>
+
 </section>
 
-<!-- PRODUCT SECTION -->
-<section class="product-section">
-<h2>Shop Exotic Culture</h2>
-<div class="product">
-  <h3>Exotic Hoodie</h3>
-  <button onclick="addToCart('Exotic Hoodie')">Add to Cart</button>
-</div>
-<div class="product">
-  <h3>Street Tee</h3>
-  <button onclick="addToCart('Street Tee')">Add to Cart</button>
-</div>
-<div class="product">
-  <h3>Snapback Cap</h3>
-  <button onclick="addToCart('Snapback Cap')">Add to Cart</button>
-</div>
-</section>
-
-<!-- FOOTER -->
 <footer>
-<h3>Exotic Culture</h3>
-<p>Streetwear for the culture.</p>
-<div class="footer-links">
+
+<p>Streetwear For The Culture</p>
+
+<p>
+
 <a href="#">Home</a>
-<a href="#">Shop</a>
-<a href="#">Gallery</a>
-<a href="#">Contact</a>
-</div>
-<div class="footer-social">
-<a href="https://instagram.com/exotic_culture23" target="_blank">Instagram</a>
-<a href="mailto:23exoticculture@gmail.com">Email</a>
-</div>
-<p style="margin-top:20px;font-size:12px;">© 2023 Exotic Culture. All rights reserved.</p>
+<a href="#shop">Shop</a>
+<a href="#gallery">Gallery</a>
+<a href="#contact">Contact</a>
+
+</p>
+
+<p>© 2026 Exotic Culture</p>
+
+<p>Your order with Exotic Culture is greatly appreciated.</p>
+
 </footer>
 
 <script>
-// CART FUNCTIONALITY
-let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-function addToCart(item){
-  cart.push(item);
-  localStorage.setItem('cart', JSON.stringify(cart));
-  document.getElementById('cart-count').textContent = cart.length;
-  alert(item + " added to cart!");
+/ CART /
+
+let cart=0;
+
+function addToCart(){
+
+cart++;
+
+document.getElementById("cart-count").innerText=cart;
+
 }
 
-// UPDATE CART COUNT ON LOAD
-document.getElementById('cart-count').textContent = cart.length;
+/ COUNTDOWN /
+
+const dropDate=new Date("May 19, 2026 12:00:00").getTime();
+
+setInterval(function(){
+
+let now=new Date().getTime();
+
+let distance=dropDate-now;
+
+let d=Math.floor(distance/(1000606024));
+
+let h=Math.floor((distance%(1000606024))/(10006060));
+
+let m=Math.floor((distance%(10006060))/(100060));
+
+let s=Math.floor((distance%(100060))/1000);
+
+document.getElementById("days").innerText=d;
+document.getElementById("hours").innerText=h;
+document.getElementById("minutes").innerText=m;
+document.getElementById("seconds").innerText=s;
+
+},1000);
+
+/ LIGHTBOX */
+
+const images=document.querySelectorAll(".gallery img");
+
+const lightbox=document.getElementById("lightbox");
+
+const lightboxImg=document.getElementById("lightbox-img");
+
+images.forEach(img=>{
+
+img.onclick=()=>{
+
+lightbox.style.display="flex";
+
+lightboxImg.src=img.src;
+
+}
+
+});
+
+lightbox.onclick=()=>{
+
+lightbox.style.display="none";
+
+}
+
 </script>
 
 </body>
+
 </html>
