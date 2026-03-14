@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Exotic Culture</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+/* GENERAL */
+body{
+  margin:0;
+  font-family:Vogue, Helvetica, sans-serif;
+  background:black;
+  color:grey;
+}
+
+/* FLOATING CART ICON */
+header{
+  position:fixed;
+  top:20px;
+  right:20px;
+  z-index:1000;
+}
+
+header a.cart-icon{
+  color:white;
+  text-decoration:none;
+  font-size:32px;
+  position:relative;
+}
+
+#cart-count{
+  position:absolute;
+  top:-10px;
+  right:-10px;
+  background:red;
+  color:white;
+  border-radius:50%;
+  padding:3px 6px;
+  font-size:14px;
+}
+
+/* CONTACT SECTION */
+#contact{
+  padding:80px 20px;
+  text-align:center;
+  background:black;
+  color:white;
+  font-family:Arial, Helvetica, sans-serif;
+}
+
+.contact-container{
+  display:flex;
+  justify-content:center;
+  gap:50px;
+  flex-wrap:wrap;
+  margin-top:40px;
+}
+
+.contact-info{
+  max-width:300px;
+}
+
+.contact-info a{
+  color:white;
+  text-decoration:none;
+  display:block;
+  margin-bottom:15px;
+  font-weight:bold;
+}
+
+.contact-form{
+  max-width:400px;
+  width:100%;
+}
+
+.contact-form input,
+.contact-form textarea{
+  width:100%;
+  padding:12px;
+  margin-bottom:15px;
+  border:none;
+  background:#111;
+  color:white;
+}
+
+.contact-form button{
+  width:100%;
+  padding:12px;
+  background:white;
+  color:black;
+  border:none;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+.contact-form button:hover{
+  background:grey;
+}
+
+/* PRODUCTS */
+.product-section{
+  padding:80px 20px;
+  text-align:center;
+}
+
+.product{
+  display:inline-block;
+  background:#111;
+  padding:20px;
+  margin:10px;
+  border-radius:10px;
+  color:white;
+}
+
+.product button{
+  padding:10px 15px;
+  margin-top:10px;
+  background:white;
+  color:black;
+  border:none;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+.product button:hover{
+  background:grey;
+}
+
+/* FOOTER */
+footer{
+  background:#050505;
+  color:white;
+  text-align:center;
+  padding:40px 20px;
+  margin-top:60px;
+  border-top:1px solid #222;
+}
+
+.footer-links{
+  margin:15px 0;
+}
+
+.footer-links a{
+  color:white;
+  text-decoration:none;
+  margin:0 15px;
+  font-size:14px;
+}
+
+.footer-links a:hover{
+  opacity:0.7;
+}
+
+.footer-social{
+  margin-top:10px;
+}
+
+.footer-social a{
+  color:white;
+  text-decoration:none;
+  margin:0 10px;
+  font-weight:bold;
+}
+</style>
+</head>
+<body>
+
+<!-- FLOATING CART -->
+<header>
+  <a href="cart.html" class="cart-icon">
+    🛒
+    <span id="cart-count">0</span>
+  </a>
+</header>
+
+<!-- CONTACT SECTION -->
+<section id="contact">
+<h2>Contact Exotic Culture</h2>
+<p>For business inquiries, collaborations, or customer support reach out below.</p>
+
+<div class="contact-container">
+
+<div class="contact-info">
+<h3>Direct Contact</h3>
+<p>Email:</p>
+<a href="mailto:exoticculture@gmail.com">exoticculture@gmail.com</a>
+<p>Instagram:</p>
+<a href="https://instagram.com/exoticculture" target="_blank">@exoticculture</a>
+</div>
+
+<div class="contact-form">
+<form action="https://formspree.io/f/mgebqplr" method="POST">
+  <input type="text" name="name" placeholder="Your Name" required>
+  <input type="email" name="email" placeholder="Your Email" required>
+  <textarea name="message" placeholder="Your Message" rows="5"></textarea>
+  <button type="submit">Send Message</button>
+</form>
+</div>
+
+</div>
+</section>
+
+<!-- PRODUCT SECTION -->
+<section class="product-section">
+<h2>Shop Exotic Culture</h2>
+<div class="product">
+  <h3>Exotic Hoodie</h3>
+  <button onclick="addToCart('Exotic Hoodie')">Add to Cart</button>
+</div>
+<div class="product">
+  <h3>Street Tee</h3>
+  <button onclick="addToCart('Street Tee')">Add to Cart</button>
+</div>
+<div class="product">
+  <h3>Snapback Cap</h3>
+  <button onclick="addToCart('Snapback Cap')">Add to Cart</button>
+</div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+<h3>Exotic Culture</h3>
+<p>Streetwear for the culture.</p>
+<div class="footer-links">
+<a href="#">Home</a>
+<a href="#">Shop</a>
+<a href="#">Gallery</a>
+<a href="#">Contact</a>
+</div>
+<div class="footer-social">
+<a href="https://instagram.com/exoticculture" target="_blank">Instagram</a>
+<a href="mailto:exoticculture@gmail.com">Email</a>
+</div>
+<p style="margin-top:20px;font-size:12px;">© 2026 Exotic Culture. All rights reserved.</p>
+</footer>
+
+<script>
+// CART FUNCTIONALITY WITH LIVE UPDATE
+let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+function addToCart(item){
+  cart.push(item);
+  localStorage.setItem('cart', JSON.stringify(cart));
+  updateCartCount();
+  alert(item + " added to cart!");
+}
+
+function updateCartCount(){
+  document.getElementById('cart-count').textContent = cart.length;
+}
+
+// Update count on page load
+updateCartCount();
+</script>
+
+</body>
+</html>
