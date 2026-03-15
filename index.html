@@ -3,12 +3,9 @@
 <head>
 
 <title>Exotic Culture</title>
-
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <style>
-
-/* GENERAL /
 
 body{
 margin:0;
@@ -18,7 +15,7 @@ color:white;
 overflow-x:hidden;
 }
 
-/ INTRO SCREEN /
+/* INTRO */
 
 #intro{
 position:fixed;
@@ -31,28 +28,26 @@ display:flex;
 justify-content:center;
 align-items:center;
 z-index:9999;
-flex-direction:column;
 animation:fadeOut 1s ease 4s forwards;
 }
 
 #intro h1{
 font-size:60px;
 letter-spacing:8px;
-color:white;
-animation:logoPulse 2s infinite;
+animation:pulse 2s infinite;
 }
 
-@keyframes logoPulse{
-0%{transform:scale(1);opacity:.8;}
-50%{transform:scale(1.1);opacity:1;}
-100%{transform:scale(1);opacity:.8;}
+@keyframes pulse{
+0%{transform:scale(1);}
+50%{transform:scale(1.1);}
+100%{transform:scale(1);}
 }
 
 @keyframes fadeOut{
 to{opacity:0;visibility:hidden;}
 }
 
-/ NAVBAR /
+/* NAV */
 
 header{
 display:flex;
@@ -62,59 +57,55 @@ padding:20px 40px;
 border-bottom:1px solid #222;
 }
 
-header nav a{
+nav a{
 color:grey;
 margin-left:20px;
 text-decoration:none;
 }
 
-header nav a:hover{
+nav a:hover{
 color:white;
 }
 
-/ CART /
+/* CART */
 
-.cart{
+.cart-icon{
 position:fixed;
 top:20px;
 right:20px;
-font-size:28px;
+font-size:26px;
 cursor:pointer;
 }
 
 #cart-count{
 background:white;
 color:black;
-border-radius:50%;
 padding:2px 6px;
+border-radius:50%;
 font-size:12px;
-margin-left:4px;
 }
 
-/ HERO /
+/* HERO */
 
 .hero{
 text-align:center;
-padding:140px 20px;
+padding:150px 20px;
 position:relative;
 }
 
 .hero h1{
-font-size:48px;
-margin-bottom:10px;
+font-size:50px;
 }
 
 .hero h2{
 color:grey;
-font-weight:normal;
 }
 
-/ BACKGROUND LOGO /
+/* BACKGROUND LOGO */
 
 .hero::before{
-content:'';
-background:url('Eccimage.jpeg') no-repeat center;
-background-size:300px;
+content:"";
+background:url("logo.png") center/300px no-repeat;
 opacity:.05;
 position:absolute;
 top:50%;
@@ -122,13 +113,31 @@ left:50%;
 transform:translate(-50%,-50%);
 width:400px;
 height:400px;
+animation:float 6s infinite ease-in-out;
 }
 
-/ COUNTDOWN /
+@keyframes float{
+0%{transform:translate(-50%,-50%) translateY(0);}
+50%{transform:translate(-50%,-50%) translateY(-20px);}
+100%{transform:translate(-50%,-50%) translateY(0);}
+}
+
+/* BUTTON */
+
+.btn{
+background:white;
+color:black;
+padding:12px 25px;
+text-decoration:none;
+font-weight:bold;
+display:inline-block;
+margin-top:20px;
+}
+
+/* COUNTDOWN */
 
 #countdown{
 margin-top:40px;
-font-size:30px;
 display:flex;
 justify-content:center;
 gap:20px;
@@ -142,7 +151,7 @@ border-radius:8px;
 min-width:80px;
 }
 
-/ SHOP /
+/* SHOP */
 
 .shop{
 padding:80px 20px;
@@ -151,10 +160,9 @@ text-align:center;
 
 .products{
 display:flex;
+gap:30px;
 justify-content:center;
 flex-wrap:wrap;
-gap:30px;
-margin-top:40px;
 }
 
 .product{
@@ -162,12 +170,7 @@ background:#111;
 padding:20px;
 border-radius:8px;
 width:220px;
-transition:.3s;
-}
-
-.product:hover{
-transform:translateY(-10px);
-background:#1a1a1a;
+text-align:center;
 }
 
 .product img{
@@ -181,10 +184,27 @@ padding:10px;
 background:white;
 border:none;
 cursor:pointer;
-font-weight:bold;
 }
 
-/ GALLERY /
+/* CART PANEL */
+
+#cart-panel{
+position:fixed;
+right:-400px;
+top:0;
+width:320px;
+height:100%;
+background:#111;
+padding:20px;
+transition:.4s;
+overflow-y:auto;
+}
+
+#cart-panel.open{
+right:0;
+}
+
+/* GALLERY */
 
 .gallery{
 display:grid;
@@ -198,15 +218,10 @@ width:100%;
 height:300px;
 object-fit:cover;
 cursor:pointer;
-border-radius:6px;
-transition:.3s;
+border-radius:8px;
 }
 
-.gallery img:hover{
-transform:scale(1.05);
-}
-
-/ LIGHTBOX /
+/* LIGHTBOX */
 
 .lightbox{
 position:fixed;
@@ -218,7 +233,6 @@ background:rgba(0,0,0,.9);
 display:none;
 justify-content:center;
 align-items:center;
-z-index:999;
 }
 
 .lightbox img{
@@ -226,23 +240,14 @@ max-width:90%;
 max-height:90%;
 }
 
-/ CONTACT /
+/* CONTACT */
 
 #contact{
 padding:80px 20px;
 text-align:center;
 }
 
-.contact-container{
-display:flex;
-justify-content:center;
-gap:40px;
-flex-wrap:wrap;
-margin-top:30px;
-}
-
-.contact-form input,
-.contact-form textarea{
+input,textarea{
 width:100%;
 padding:12px;
 margin-bottom:10px;
@@ -251,28 +256,20 @@ background:#111;
 color:white;
 }
 
-.contact-form button{
+button{
 padding:12px;
-width:100%;
 background:white;
 border:none;
 cursor:pointer;
 }
 
-/ FOOTER /
+/* FOOTER */
 
 footer{
 text-align:center;
-padding:40px 20px;
+padding:40px;
 border-top:1px solid #222;
 color:grey;
-margin-top:60px;
-}
-
-footer a{
-color:white;
-text-decoration:none;
-margin:0 10px;
 }
 
 </style>
@@ -281,13 +278,9 @@ margin:0 10px;
 
 <body>
 
-<!-- INTRO LOGO -->
-
 <div id="intro">
 <h1>EXOTIC CULTURE</h1>
 </div>
-
-<!-- NAV -->
 
 <header>
 
@@ -302,17 +295,29 @@ margin:0 10px;
 
 </header>
 
-<!-- CART -->
+<div class="cart-icon" onclick="toggleCart()">
+🛒 <span id="cart-count">0</span>
+</div>
 
-<div class="cart">🛒 <span id="cart-count">0</span></div>
+<div id="cart-panel">
 
-<!-- HERO -->
+<h2>Your Cart</h2>
+
+<div id="cart-items"></div>
+
+<h3 id="cart-total"></h3>
+
+<button onclick="checkout()">Checkout</button>
+
+</div>
 
 <section class="hero">
 
 <h1>Streetwear For The Culture</h1>
 
 <h2>Welcome To The Official Exotic Culture Website</h2>
+
+<a href="#shop" class="btn">Shop Now</a>
 
 <div id="countdown">
 
@@ -325,37 +330,13 @@ margin:0 10px;
 
 </section>
 
-<!-- SHOP -->
-
 <section id="shop" class="shop">
 
 <h2>Shop Exotic Culture</h2>
 
-<div class="products">
-
-<div class="product">
-<img src="hoodie1.jpg">
-<h3>Dont' Run Now Hoodie</h3>
-<button onclick="addToCart()">Add To Cart</button>
-</div>
-
-<div class="product">
-<img src="hoodie2.jpg">
-<h3>Street Tee</h3>
-<button onclick="addToCart()">Add To Cart</button>
-</div>
-
-<div class="product">
-<img src="hoodie3.jpg">
-<h3>Snapback</h3>
-<button onclick="addToCart()">Add To Cart</button>
-</div>
-
-</div>
+<div class="products" id="products"></div>
 
 </section>
-
-<!-- GALLERY -->
 
 <section id="gallery">
 
@@ -366,9 +347,6 @@ margin:0 10px;
 <img src="3ppl.jpeg">
 <img src="Shawno1.jpeg">
 <img src="chasemore.jpg">
-<img src="hoodie1.jpg">
-<img src="hoodie2.jpg">
-<img src="hoodie3.jpg">
 
 </div>
 
@@ -378,39 +356,19 @@ margin:0 10px;
 <img id="lightbox-img">
 </div>
 
-<!-- CONTACT -->
-
 <section id="contact">
 
 <h2>Contact Exotic Culture</h2>
 
-<div class="contact-container">
-
-<div>
-<p>Email</p>
-<a href="mailto:exoticculture@gmail.com">exoticculture@gmail.com</a>
-
-<p>Instagram</p>
-<a href="https://instagram.com/exoticculture">@exoticculture</a>
-</div>
-
-<div class="contact-form">
-
 <form action="https://formspree.io/f/mgebqplr" method="POST">
 
 <input type="text" name="name" placeholder="Name" required>
-
 <input type="email" name="email" placeholder="Email" required>
-
 <textarea name="message" placeholder="Message"></textarea>
 
 <button type="submit">Send Message</button>
 
 </form>
-
-</div>
-
-</div>
 
 </section>
 
@@ -418,88 +376,108 @@ margin:0 10px;
 
 <p>Streetwear For The Culture</p>
 
-<p>
-
-<a href="#">Home</a>
-<a href="#shop">Shop</a>
-<a href="#gallery">Gallery</a>
-<a href="#contact">Contact</a>
-
-</p>
-
-<p>© 2026 Exotic Culture</p>
-
 <p>Your order with Exotic Culture is greatly appreciated.</p>
 
 </footer>
 
 <script>
 
-/ CART /
+/* PRODUCTS */
 
-let cart=0;
+const products=[
+{name:"Exotic Hoodie",price:85,image:"hoodie1.jpg"},
+{name:"Street Tee",price:35,image:"hoodie2.jpg"},
+{name:"Snapback",price:45,image:"hoodie3.jpg"}
+];
 
-function addToCart(){
+let cart=[];
 
-cart++;
+const productContainer=document.getElementById("products");
 
-document.getElementById("cart-count").innerText=cart;
+products.forEach((p,i)=>{
 
-}
-
-/ COUNTDOWN /
-
-const dropDate=new Date("May 19, 2026 12:00:00").getTime();
-
-setInterval(function(){
-
-let now=new Date().getTime();
-
-let distance=dropDate-now;
-
-let d=Math.floor(distance/(1000606024));
-
-let h=Math.floor((distance%(1000606024))/(10006060));
-
-let m=Math.floor((distance%(10006060))/(100060));
-
-let s=Math.floor((distance%(100060))/1000);
-
-document.getElementById("days").innerText=d;
-document.getElementById("hours").innerText=h;
-document.getElementById("minutes").innerText=m;
-document.getElementById("seconds").innerText=s;
-
-},1000);
-
-/ LIGHTBOX */
-
-const images=document.querySelectorAll(".gallery img");
-
-const lightbox=document.getElementById("lightbox");
-
-const lightboxImg=document.getElementById("lightbox-img");
-
-images.forEach(img=>{
-
-img.onclick=()=>{
-
-lightbox.style.display="flex";
-
-lightboxImg.src=img.src;
-
-}
+productContainer.innerHTML+=`
+<div class="product">
+<img src="${p.image}">
+<h3>${p.name}</h3>
+<p>$${p.price}</p>
+<button onclick="addToCart(${i})">Add To Cart</button>
+</div>
+`;
 
 });
 
-lightbox.onclick=()=>{
+/* CART */
 
-lightbox.style.display="none";
+function addToCart(i){
+cart.push(products[i]);
+updateCart();
+}
+
+function updateCart(){
+
+let items=document.getElementById("cart-items");
+
+items.innerHTML="";
+
+let total=0;
+
+cart.forEach(item=>{
+items.innerHTML+=`<p>${item.name} - $${item.price}</p>`;
+total+=item.price;
+});
+
+document.getElementById("cart-total").innerText="Total: $"+total;
+document.getElementById("cart-count").innerText=cart.length;
 
 }
+
+function toggleCart(){
+document.getElementById("cart-panel").classList.toggle("open");
+}
+
+/* STRIPE CHECKOUT */
+
+const STRIPE_LINK="PASTE_YOUR_STRIPE_PAYMENT_LINK_HERE";
+
+function checkout(){
+window.location.href=STRIPE_LINK;
+}
+
+/* COUNTDOWN */
+
+const dropDate=new Date("May 19, 2026 12:00:00").getTime();
+
+setInterval(()=>{
+
+let now=new Date().getTime();
+let distance=dropDate-now;
+
+document.getElementById("days").innerText=Math.floor(distance/(1000*60*60*24));
+document.getElementById("hours").innerText=Math.floor((distance%(1000*60*60*24))/(1000*60*60));
+document.getElementById("minutes").innerText=Math.floor((distance%(1000*60*60))/(1000*60));
+document.getElementById("seconds").innerText=Math.floor((distance%(1000*60))/1000);
+
+},1000);
+
+/* LIGHTBOX */
+
+const images=document.querySelectorAll(".gallery img");
+const lightbox=document.getElementById("lightbox");
+const lightboxImg=document.getElementById("lightbox-img");
+
+images.forEach(img=>{
+img.onclick=()=>{
+lightbox.style.display="flex";
+lightboxImg.src=img.src;
+};
+});
+
+lightbox.onclick=()=>{
+lightbox.style.display="none";
+};
 
 </script>
 
 </body>
-
 </html>
